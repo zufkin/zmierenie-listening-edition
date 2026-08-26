@@ -1,4 +1,4 @@
-﻿const $ = (s) => document.querySelector(s);
+const $ = (s) => document.querySelector(s);
 const audio = $('#audio');
 const DEFAULT = { chapter: 1, layer: 'pribeh', time: 0, queueIndex: 0, speed: 1, autoplay: true };
 let M;
@@ -51,7 +51,8 @@ function loadTrack(time = 0, autoplay = false) {
 function render(autoplay = false) {
   const c = currentChapter();
   $('#number').textContent = `Kapitola ${String(c.number).padStart(2, '0')}`;
-  $('#title').textContent = c.title;  const choices = [...M.layers.map((l) => [l.id, l.label]), ['all', 'CelĂ© za sebou']];
+  $('#title').textContent = c.title;
+  const choices = [...M.layers.map((l) => [l.id, l.label]), ['all', 'Celé za sebou']];
   $('#layers').innerHTML = choices.map(([id, label]) =>
     `<button data-layer="${id}" class="${state.layer === id ? 'active' : ''}">${label}</button>`
   ).join('');
@@ -79,7 +80,8 @@ function goChapter(delta, autoplay = true) {
 }
 
 function move(delta) {
-  if (state.layer === 'all') {    const next = state.queueIndex + delta;
+  if (state.layer === 'all') {
+    const next = state.queueIndex + delta;
     if (next >= 0 && next < queue.length) {
       state.queueIndex = next;
       state.time = 0;
@@ -111,8 +113,8 @@ $('#chapters').addEventListener('click', (e) => {
   save();
 });
 $('#play').addEventListener('click', () => audio.paused ? audio.play() : audio.pause());
-audio.addEventListener('play', () => { $('#play').textContent = 'â…ˇ'; });
-audio.addEventListener('pause', () => { $('#play').textContent = 'â–¶'; });
+audio.addEventListener('play', () => { $('#play').textContent = 'Ⅱ'; });
+audio.addEventListener('pause', () => { $('#play').textContent = '▶'; });
 audio.addEventListener('timeupdate', () => {
   tick();
   if (Math.floor(audio.currentTime) % 5 === 0) save();
@@ -140,24 +142,24 @@ audio.addEventListener('ended', () => {
 });
 $('#download').addEventListener('click', async () => {
   if (!('caches' in window)) {
-    $('#status').textContent = 'Offline uloĹľenie tento prehliadaÄŤ nepodporuje.';
+    $('#status').textContent = 'Offline uloženie tento prehliadač nepodporuje.';
     return;
   }
   const urls = M.chapters.flatMap((c) => M.layers.map((l) => c.layers[l.id].audio));
-  const cache = await caches.open('zmierenie-downloads-v1');
+  const cache = await caches.open('zmierenie-downloads-v3');
   if (navigator.storage?.persist) await navigator.storage.persist().catch(() => false);
   $('#download').disabled = true;
   try {
     for (let i = 0; i < urls.length; i += 1) {
-      $('#status').textContent = `UkladĂˇm knihu na cestuâ€¦ ${i + 1}/${urls.length}`;
+      $('#status').textContent = `Ukladám knihu na cestu… ${i + 1}/${urls.length}`;
       const request = new Request(urls[i], { cache: 'reload' });
       const response = await fetch(request);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       await cache.put(request, response);
     }
-    $('#status').textContent = 'CelĂˇ kniha je uloĹľenĂˇ na offline poÄŤĂşvanie.';
+    $('#status').textContent = 'Celá kniha je uložená na offline počúvanie.';
   } catch (error) {
-    $('#status').textContent = `Offline uloĹľenie sa preruĹˇilo: ${error.message}. SkĂşs tlaÄŤidlo znova.`;
+    $('#status').textContent = `Offline uloženie sa prerušilo: ${error.message}. Skús tlačidlo znova.`;
   } finally {
     $('#download').disabled = false;
   }
@@ -169,8 +171,7 @@ M = await fetch('./manifest.json').then((r) => {
 });
 if (!M.chapters.some((c) => c.number === state.chapter)) state = { ...DEFAULT };
 $('#autoplay').checked = state.autoplay !== false;
-$('#speed').value = `${state.speed || 1}Ă—`;
+$('#speed').value = `${state.speed || 1}×`;
 render(false);
 addEventListener('beforeunload', save);
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js', { scope: './' });
-
