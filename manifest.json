@@ -1,0 +1,207 @@
+﻿{
+  "schemaVersion": 1,
+  "book": {
+    "id": "zmierenie",
+    "title": "Zmierenie",
+    "subtitle": "Listening Edition",
+    "language": "sk",
+    "sourceVersion": "1.3.1"
+  },
+  "layers": [
+    {
+      "id": "pribeh",
+      "label": "PrĂ­beh"
+    },
+    {
+      "id": "porozumiet",
+      "label": "PorozumieĹĄ"
+    },
+    {
+      "id": "praktizovat",
+      "label": "PraktizovaĹĄ"
+    }
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Znamenia ÄŤasu",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-01-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-01-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-01-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 2,
+      "title": "RozliĹˇovanie spomalenĂ­m",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-02-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-02-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-02-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 3,
+      "title": "ZĂˇĹľitok polarizĂˇcie",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-03-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-03-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-03-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 4,
+      "title": "DialĂłg a nenĂˇsilnĂˇ komunikĂˇcia",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-04-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-04-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-04-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 5,
+      "title": "KrehkosĹĄ moci",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-05-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-05-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-05-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 6,
+      "title": "ZraniteÄľnosĹĄ identity",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-06-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-06-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-06-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 7,
+      "title": "Hranice otvorenosti",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-07-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-07-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-07-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 8,
+      "title": "ÄŚo nĂˇs spĂˇja",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-08-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-08-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-08-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 9,
+      "title": "ReĹˇpektujĂşce sprevĂˇdzanie",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-09-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-09-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-09-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 10,
+      "title": "Hovorenie o Bohu",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-10-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-10-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-10-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 11,
+      "title": "Ă‰ra inteligencie",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-11-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-11-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-11-praktizovat.mp3"
+        }
+      }
+    },
+    {
+      "number": 12,
+      "title": "PĂştnici nĂˇdeje",
+      "layers": {
+        "pribeh": {
+          "audio": "./zmierenie-12-pribeh.mp3"
+        },
+        "porozumiet": {
+          "audio": "./zmierenie-12-porozumiet.mp3"
+        },
+        "praktizovat": {
+          "audio": "./zmierenie-12-praktizovat.mp3"
+        }
+      }
+    }
+  ]
+}
+

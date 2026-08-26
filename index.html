@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#233b36"><meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <title>Zmierenie â€” Listening Edition</title>
+  <meta name="description" content="Offline poÄŤĂşvanie knihy Zmierenie">
+  <link rel="manifest" href="./app.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header><p class="platform"><a href="/">TeologickĂˇ fakulta Â· digitĂˇlna platforma</a></p><p class="kicker">JOZEF Ĺ˝UFFA</p><h1>Zmierenie</h1><p>Cesta pozornosti, rozliĹˇovania a konania</p></header>
+<main>
+<section class="now">
+  <div><span id="number">Kapitola 01</span><h2 id="title">Znamenia ÄŤasu</h2></div>
+  <button id="download">â†“ StiahnuĹĄ celĂş knihu na cestu</button>
+  <div class="layers" id="layers" aria-label="Vrstva poÄŤĂşvania"></div>
+  <audio id="audio" preload="metadata"></audio>
+  <div class="scrub"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="PozĂ­cia"><span id="duration">0:00</span></div>
+  <div class="controls"><button id="prev" aria-label="PredchĂˇdzajĂşca">â€ą</button><button id="play" class="play" aria-label="PrehraĹĄ">â–¶</button><button id="next" aria-label="NasledujĂşca">â€ş</button></div>
+  <div class="options"><label>RĂ˝chlosĹĄ <select id="speed"><option>.8Ă—</option><option selected>1Ă—</option><option>1.2Ă—</option><option>1.5Ă—</option><option>2Ă—</option></select></label><label class="toggle"><input id="autoplay" type="checkbox" checked> Automaticky pokraÄŤovaĹĄ</label></div>
+  <p id="status" role="status"></p>
+</section>
+<section><h2>Kapitoly</h2><div id="chapters" class="chapters"></div></section>
+<footer class="edition-note">PracovnĂˇ posluchovĂˇ edĂ­cia Â· zdrojovĂˇ verzia 1.3.1</footer>
+</main>
+<script src="./app.js" type="module"></script>
+</body></html>
