@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "chapters": [
+    {
+      "chapter": 1,
+      "filename": "chapter-01.html",
+      "chars": 23802,
+      "video": "n1YUXvel7NM",
+      "audio": "zmierenie-01-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 2,
+      "filename": "chapter-02.html",
+      "chars": 21988,
+      "video": "LUW_EOUGesQ",
+      "audio": "zmierenie-02-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 3,
+      "filename": "chapter-03.html",
+      "chars": 20951,
+      "video": "O6Mvsb0FtMY",
+      "audio": "zmierenie-03-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 4,
+      "filename": "chapter-04.html",
+      "chars": 21476,
+      "video": "OaoweVrWX78",
+      "audio": "zmierenie-04-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 5,
+      "filename": "chapter-05.html",
+      "chars": 22848,
+      "video": "nbKnjiulAVo",
+      "audio": "zmierenie-05-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 6,
+      "filename": "chapter-06.html",
+      "chars": 22780,
+      "video": "ZhFuRlnAa10",
+      "audio": "zmierenie-06-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 7,
+      "filename": "chapter-07.html",
+      "chars": 20881,
+      "video": "2UhGLd6ja9c",
+      "audio": "zmierenie-07-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 8,
+      "filename": "chapter-08.html",
+      "chars": 20752,
+      "video": "fANqrvAECl4",
+      "audio": "zmierenie-08-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 9,
+      "filename": "chapter-09.html",
+      "chars": 21672,
+      "video": "hQ8J4cvzQig",
+      "audio": "zmierenie-09-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 10,
+      "filename": "chapter-10.html",
+      "chars": 21028,
+      "video": "JW0LMNgu6Mk",
+      "audio": "zmierenie-10-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 11,
+      "filename": "chapter-11.html",
+      "chars": 22073,
+      "video": "t4OFZDDLYvY",
+      "audio": "zmierenie-11-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    },
+    {
+      "chapter": 12,
+      "filename": "chapter-12.html",
+      "chars": 22149,
+      "video": "UFGUZ1qG8zU",
+      "audio": "zmierenie-12-reflexia.mp3",
+      "hasDialogue": true,
+      "hasReflection": true
+    }
+  ],
+  "index": "index.html"
+}
