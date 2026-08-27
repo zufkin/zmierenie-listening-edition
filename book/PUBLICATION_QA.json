@@ -1,0 +1,127 @@
+{
+  "status": "PASS",
+  "chapterRows": [
+    {
+      "chapter": 1,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 2,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 3,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 4,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 5,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 6,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 7,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 8,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 9,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 10,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 11,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    },
+    {
+      "chapter": 12,
+      "outerH1": 0,
+      "chapterHeading": 1,
+      "iframes": 1,
+      "resourceVideo": 0,
+      "audio": 1,
+      "metaThesisRepeat": false
+    }
+  ],
+  "publication": {
+    "pdf": true,
+    "intro": true,
+    "zulehner": true,
+    "boby": true,
+    "thanks": true,
+    "howTo": true,
+    "summary": true,
+    "lifelong": true,
+    "appendixA": true,
+    "appendixB": true,
+    "appendixC": true,
+    "literature": true
+  }
+}
