@@ -1,29 +1,13 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="sk">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#233b36"><meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
-  <title>Zmierenie — Listening Edition</title>
-  <meta name="description" content="Offline počúvanie knihy Zmierenie">
-  <link rel="manifest" href="./app.webmanifest">
-  <link rel="stylesheet" href="./styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="0; url=./book/">
+<title>Zmierenie – online kniha</title>
+<script>location.replace('./book/');</script>
 </head>
 <body>
-<header><p class="platform"><a href="https://tf.truni.sk/">Teologická fakulta · digitálna platforma</a></p><p class="kicker">JOZEF ŽUFFA</p><h1>Zmierenie</h1><p>Cesta pozornosti, rozlišovania a konania</p></header>
-<main>
-<section class="now">
-  <div><span id="number">Kapitola 01</span><h2 id="title">Znamenia času</h2></div>
-  <button id="download">↓ Stiahnuť celú knihu na cestu</button>
-  <div class="layers" id="layers" aria-label="Vrstva počúvania"></div>
-  <audio id="audio" preload="metadata"></audio>
-  <div class="scrub"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Pozícia"><span id="duration">0:00</span></div>
-  <div class="controls"><button id="prev" aria-label="Predchádzajúca">‹</button><button id="play" class="play" aria-label="Prehrať">▶</button><button id="next" aria-label="Nasledujúca">›</button></div>
-  <div class="options"><label>Rýchlosť <select id="speed"><option>.8×</option><option selected>1×</option><option>1.2×</option><option>1.5×</option><option>2×</option></select></label><label class="toggle"><input id="autoplay" type="checkbox" checked> Automaticky pokračovať</label></div>
-  <p id="status" role="status"></p>
-</section>
-<section><h2>Kapitoly</h2><div id="chapters" class="chapters"></div></section>
-<footer class="edition-note">Pracovná posluchová edícia · zdrojová verzia 1.3.1</footer>
-</main>
-<script src="./app.js" type="module"></script>
-</body></html>
+<p>Otváram aktuálnu online knihu <a href="./book/">Zmierenie</a>…</p>
+</body>
+</html>
