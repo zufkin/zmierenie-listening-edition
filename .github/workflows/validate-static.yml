@@ -1,0 +1,49 @@
+name: Validate Listening Edition
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s index.html
+          test -s app.js
+          test -s styles.css
+          test -s manifest.json
+          test -s app.webmanifest
+          test -s sw.js
+      - name: Validate JSON
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          for p in ['manifest.json','app.webmanifest']:
+              with open(p, encoding='utf-8') as f:
+                  json.load(f)
+              print('OK', p)
+          PY
+      - name: Check local asset references
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          missing=[]
+          for name in ['index.html','app.js','styles.css','sw.js']:
+              text=Path(name).read_text(encoding='utf-8')
+              for ref in re.findall(r"(?:src|href)=[\"']([^\"'#?]+)|[\"']([^\"']+\.(?:mp3|png|css|js|json))[\"']", text):
+                  target=next((x for x in ref if x), '')
+                  if target.startswith(('http://','https://','data:','/')): continue
+                  if target and not Path(target).exists(): missing.append((name,target))
+          if missing:
+              raise SystemExit('Missing local assets: '+repr(missing))
+          print('Local asset references OK')
+          PY
