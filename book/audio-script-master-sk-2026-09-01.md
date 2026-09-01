@@ -1,9 +1,10 @@
 # Zmierenie — audio script master SK
 
-**Status:** FINAL_CANDIDATE / USER_APPROVAL_REQUIRED  
-**Date:** 2026-09-01  
-**Scope:** 12 × jedna plynulá audioreflexia ku kapitole  
-**Boundary:** nemení text finálneho PDF; ide o živú companion vrstvu.  
+**Status:** APPROVED / RELEASED
+**Date:** 2026-09-01
+**Scope:** 12 × jedna plynulá audioreflexia ku kapitole
+**Boundary:** nemení text finálneho PDF; ide o živú companion vrstvu.
+**Approval:** explicit user approval, 2026-09-01
 
 ## Produkčné pravidlá
 

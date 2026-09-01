@@ -1,0 +1,128 @@
+{
+  "status": "PREDEPLOY_QA_PASS",
+  "date": "2026-09-01",
+  "baseCommit": "587a28bcd5f714a6150ae71e23cda2b3f0b76c0b",
+  "sourceMaster": "book/audio-script-master-sk-2026-09-01.md",
+  "voiceName": "Jozef",
+  "voiceId": "htSeFhhpBaCgJzL05q6C",
+  "model": "eleven_multilingual_v2",
+  "outputFormat": "mp3_44100_128",
+  "voiceSettings": {
+    "use_speaker_boost": true,
+    "similarity_boost": 0.75,
+    "style": 0,
+    "speed": 0.96,
+    "stability": 0.31
+  },
+  "htmlMetadataUpdated": 12,
+  "chapters": [
+    {
+      "chapter": 1,
+      "filename": "zmierenie-01-reflexia.mp3",
+      "bytes": 1490068,
+      "duration": "00:01:33",
+      "sha256": "48c01e7cfc50662410769310ab64c5d94a0b2b0bd1831f32d3a76004d92818d0",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 2,
+      "filename": "zmierenie-02-reflexia.mp3",
+      "bytes": 1521415,
+      "duration": "00:01:35",
+      "sha256": "826605c18b97e58b16fef9522a09973014412c0c805bd91ca636dea93f84750e",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 3,
+      "filename": "zmierenie-03-reflexia.mp3",
+      "bytes": 1706153,
+      "duration": "00:01:46",
+      "sha256": "61ab2dcc936e4c16fbb08ee7051b0b06c5e960a6a53cc2183f765959cf09eb91",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 4,
+      "filename": "zmierenie-04-reflexia.mp3",
+      "bytes": 1616292,
+      "duration": "00:01:41",
+      "sha256": "5a74101af9e42944decae9af861c5f99ca43c944313002a1fb2d37702fc22013",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 5,
+      "filename": "zmierenie-05-reflexia.mp3",
+      "bytes": 1574914,
+      "duration": "00:01:38",
+      "sha256": "a68a63f87181c4073a3c056e1cd4cb5893c0a3157028a1fa4cac13ba31347e0b",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 6,
+      "filename": "zmierenie-06-reflexia.mp3",
+      "bytes": 1539805,
+      "duration": "00:01:36",
+      "sha256": "3eb024bf166213e864bc2b4205058b6987b18fbfec0bf4bacfa852a0b9605c95",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 7,
+      "filename": "zmierenie-07-reflexia.mp3",
+      "bytes": 1470842,
+      "duration": "00:01:31",
+      "sha256": "eb0284d6571357e345714446fb17c9ccf7e454f2d0ea03b495cd7ebda6a37c34",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 8,
+      "filename": "zmierenie-08-reflexia.mp3",
+      "bytes": 1704063,
+      "duration": "00:01:46",
+      "sha256": "245f79e5aa11d2cd235d8d1466db34e424ac870d8ebf98a313b553b8f02fa018",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 9,
+      "filename": "zmierenie-09-reflexia.mp3",
+      "bytes": 1571988,
+      "duration": "00:01:38",
+      "sha256": "c66c41b6059cda9d7c77f6207e6f7ca8fe54eb6bb558c1b9be25047f2424157b",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 10,
+      "filename": "zmierenie-10-reflexia.mp3",
+      "bytes": 1573242,
+      "duration": "00:01:38",
+      "sha256": "cf6714b692d9cd883e3e1bcd0c614290fe8e335b0172e21b813485f05285734c",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 11,
+      "filename": "zmierenie-11-reflexia.mp3",
+      "bytes": 1550254,
+      "duration": "00:01:36",
+      "sha256": "a29d02f9d20a3807759b997f8bba819b37610fb7835c165dac56912a015a4db1",
+      "matchesStaging": true,
+      "signature": true
+    },
+    {
+      "chapter": 12,
+      "filename": "zmierenie-12-reflexia.mp3",
+      "bytes": 2442597,
+      "duration": "00:02:32",
+      "sha256": "d87b2da08978bdef9c91d5ce9b198c31e694a44e26aa21f49ddd97fa53f7f7b6",
+      "matchesStaging": true,
+      "signature": true
+    }
+  ]
+}
