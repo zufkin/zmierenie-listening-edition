@@ -1,5 +1,5 @@
 {
-  "status": "PREDEPLOY_QA_PASS",
+  "status": "LIVE_VERIFIED_PASS",
   "date": "2026-09-01",
   "baseCommit": "587a28bcd5f714a6150ae71e23cda2b3f0b76c0b",
   "sourceMaster": "book/audio-script-master-sk-2026-09-01.md",
@@ -124,5 +124,19 @@
       "matchesStaging": true,
       "signature": true
     }
-  ]
+  ],
+  "liveVerifiedAt": "2026-09-01T08:19:19.562Z",
+  "liveBaseUrl": "https://zufkin.github.io/zmierenie-listening-edition/book/",
+  "liveReadback": {
+    "audioHttp200": 12,
+    "audioSha256Matches": 12,
+    "chapterHtmlHttp200": 12,
+    "chapterMetadataPass": 12,
+    "pdf": {
+      "url": "https://tf.truni.sk/sites/default/files/book/zmierenie-ucebnica.pdf",
+      "bytes": 1286999,
+      "sha256": "9dbaaef6cfb0af6a951f817d4f922169a9fdcc5d9863784ca62f124d82129f8c",
+      "unchanged": true
+    }
+  }
 }
