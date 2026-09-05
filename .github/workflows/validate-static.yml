@@ -23,6 +23,15 @@ jobs:
           test -s book/index.html
           test -s book/chapter.css
           test -s book/chapter.js
+          test -s book/book.js
+          test -s book/book-ui.css
+      - name: Validate JavaScript
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check book/book.js
+          node --check book/chapter.js
+          node --check book/theme-bridge.js
       - name: Validate JSON
         shell: bash
         run: |
@@ -40,17 +49,22 @@ jobs:
           from pathlib import Path
           import re
           missing=[]
-          for name in ['index.html','app.js','styles.css','sw.js']:
+          files=['index.html','app.js','styles.css','sw.js','book/index.html','book/book.js','book/chapter.js']
+          for name in files:
               text=Path(name).read_text(encoding='utf-8')
               for ref in re.findall(r"(?:src|href)=[\"']([^\"'#?]+)|[\"']([^\"']+\.(?:mp3|png|css|js|json))[\"']", text):
                   target=next((x for x in ref if x), '')
                   if target.startswith(('http://','https://','data:','/')): continue
-                  if target and not Path(target).exists(): missing.append((name,target))
+                  if target.startswith('./'):
+                      path=(Path(name).parent/target).resolve()
+                      root=Path('.').resolve()
+                      if not str(path).startswith(str(root)) or not path.exists(): missing.append((name,target))
+                  elif target and not Path(target).exists(): missing.append((name,target))
           if missing:
               raise SystemExit('Missing local assets: '+repr(missing))
           print('Local asset references OK')
           PY
-      - name: Validate full book and audio disclosures
+      - name: Validate full book and learning layer
         shell: bash
         run: |
           python - <<'PY'
@@ -66,19 +80,21 @@ jobs:
                   'chapter stylesheet': 'href="./chapter.css"' in text,
                   'chapter script': '<script src="./chapter.js"></script>' in text,
                   'audio extension': 'audio-extension' in text,
+                  'notes': f'data-notes="chapter-{i}"' in text,
               }
               failed=[name for name,ok in checks.items() if not ok]
               if failed:
                   raise SystemExit(f'{p}: missing {failed}')
               if not Path('book/audio',f'zmierenie-{i:02d}-reflexia.mp3').is_file():
                   raise SystemExit(f'{p}: missing audio file')
+          index=Path('book/index.html').read_text(encoding='utf-8')
           long_note='Experimentálna audio vrstva so synteticky generovaným hlasom pomocou AI.'
           short_note='Experimentálna vrstva – syntetický hlas.'
-          if long_note not in Path('book/index.html').read_text(encoding='utf-8'):
-              raise SystemExit('Book index is missing the approved full AI audio disclosure')
-          if short_note not in Path('book/chapter.js').read_text(encoding='utf-8'):
-              raise SystemExit('Chapter JS is missing the short disclosure')
-          if short_note not in Path('book/chapter.css').read_text(encoding='utf-8'):
-              raise SystemExit('CSS fallback is missing the short disclosure')
-          print('Book QA OK: 12 chapters, 12 audio files, disclosure JS + CSS fallback')
+          if long_note not in index: raise SystemExit('Book index is missing the full AI audio disclosure')
+          if 'https://tf.truni.sk/sites/default/files/book/zmierenie-ucebnica.pdf' not in index: raise SystemExit('Stable PDF link is missing')
+          if index.count('data-chapter-card=') != 12: raise SystemExit('Index must expose 12 chapter cards')
+          if './book.js' not in index or './book-ui.css' not in index: raise SystemExit('Index learning UI assets are missing')
+          if short_note not in Path('book/chapter.js').read_text(encoding='utf-8'): raise SystemExit('Chapter JS is missing the short disclosure')
+          if short_note not in Path('book/chapter.css').read_text(encoding='utf-8'): raise SystemExit('CSS fallback is missing the short disclosure')
+          print('Book QA OK: 12 pages, 12 audios, stable PDF, notes, progress/search UI, disclosure fallback')
           PY
