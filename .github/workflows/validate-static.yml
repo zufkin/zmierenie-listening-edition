@@ -73,6 +73,7 @@ jobs:
           chapters=sorted(Path('book').glob('chapter-[0-9][0-9].html'))
           if len(chapters) != 12:
               raise SystemExit(f'Expected 12 chapters, found {len(chapters)}')
+          pedagogical=['orientation-panel','class="learning"','id="dialogue"','id="reflection"','class="takeaway"','class="stops"','class="discernment"','class="teacher-box"','class="resources"','class="bibliography"','Jadro kapitoly je celý text.']
           for i,p in enumerate(chapters,1):
               text=p.read_text(encoding='utf-8')
               expected=f'./audio/zmierenie-{i:02d}-reflexia.mp3'
@@ -82,12 +83,23 @@ jobs:
                   'chapter script': '<script src="./chapter.js"></script>' in text,
                   'audio extension': 'audio-extension' in text,
                   'notes': f'data-notes="chapter-{i}"' in text,
+                  'pedagogical structure': all(marker in text for marker in pedagogical),
               }
               failed=[name for name,ok in checks.items() if not ok]
               if failed:
                   raise SystemExit(f'{p}: missing {failed}')
               if not Path('book/audio',f'zmierenie-{i:02d}-reflexia.mp3').is_file():
                   raise SystemExit(f'{p}: missing audio file')
+          sensitive={
+              5:['bezpeč','zneuž','odpustenie','zodpoved'],
+              6:['dôstoj','hanb','bezpeč','zodpoved'],
+              9:['Mediácia nie je vhodná','násil','ochran','nerovnováh'],
+              11:['Magnifica humanitas','Antiqua et nova','transparentn','zodpoved'],
+          }
+          for n,markers in sensitive.items():
+              text=Path(f'book/chapter-{n:02d}.html').read_text(encoding='utf-8').lower()
+              missing=[m for m in markers if m.lower() not in text]
+              if missing: raise SystemExit(f'chapter {n}: missing theological/safety guardrails {missing}')
           index=Path('book/index.html').read_text(encoding='utf-8')
           long_note='Experimentálna audio vrstva so synteticky generovaným hlasom pomocou AI.'
           short_note='Experimentálna vrstva – syntetický hlas.'
@@ -97,5 +109,5 @@ jobs:
           if './book.js' not in index or './book-ui.css' not in index: raise SystemExit('Index learning UI assets are missing')
           if short_note not in Path('book/chapter.js').read_text(encoding='utf-8'): raise SystemExit('Chapter JS is missing the short disclosure')
           if short_note not in Path('book/chapter.css').read_text(encoding='utf-8'): raise SystemExit('CSS fallback is missing the short disclosure')
-          print('Book QA OK: 12 pages, 12 audios, stable PDF, notes, progress/search UI, disclosure fallback')
+          print('Book QA OK: technical + pedagogical + theological/safety regression checks passed')
           PY
