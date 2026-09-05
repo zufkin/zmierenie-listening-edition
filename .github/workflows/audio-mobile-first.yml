@@ -1,0 +1,49 @@
+name: Audio Mobile First
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'audio-requests/current.json'
+  workflow_dispatch:
+
+jobs:
+  render-preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate managed ElevenLabs secret
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: |
+          if [ -z "$ELEVENLABS_API_KEY" ]; then
+            echo "Managed ELEVENLABS_API_KEY is not bootstrapped yet."
+            exit 20
+          fi
+      - name: Render request
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: python scripts/audio/render_from_request.py
+      - name: Validate preview receipt
+        run: |
+          REQUEST_ID=$(python -c "import json; print(json.load(open('audio-requests/current.json'))['requestId'])")
+          python - "$REQUEST_ID" <<'PY'
+          import json, pathlib, sys
+          request_id=sys.argv[1]
+          p=pathlib.Path('dist/audio-mobile-first')/request_id/'receipt.json'
+          r=json.loads(p.read_text(encoding='utf-8'))
+          assert r['status']=='PREVIEW_RENDER_READY'
+          assert r['textChanged'] is False
+          assert r['productionAudioChanged'] is False
+          assert all(x['bytes'] > 10000 for x in r['results'])
+          print(json.dumps(r, ensure_ascii=False))
+          PY
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: audio-${{ github.run_id }}
+          path: dist/audio-mobile-first/
+          if-no-files-found: error
+          retention-days: 30
