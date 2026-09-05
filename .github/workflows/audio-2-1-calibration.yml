@@ -2,12 +2,6 @@ name: Audio 2.1 Calibration
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/audio/render_audio_2_1_sample.py'
-      - '.github/workflows/audio-2-1-calibration.yml'
-      - 'book/AUDIO_DIRECTION_2_1.md'
 
 jobs:
   render:
