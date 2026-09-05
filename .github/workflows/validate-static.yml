@@ -54,6 +54,7 @@ jobs:
               text=Path(name).read_text(encoding='utf-8')
               for ref in re.findall(r"(?:src|href)=[\"']([^\"'#?]+)|[\"']([^\"']+\.(?:mp3|png|css|js|json))[\"']", text):
                   target=next((x for x in ref if x), '')
+                  if '${' in target: continue
                   if target.startswith(('http://','https://','data:','/')): continue
                   if target.startswith('./'):
                       path=(Path(name).parent/target).resolve()
