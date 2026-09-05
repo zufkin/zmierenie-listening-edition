@@ -1,0 +1,44 @@
+name: Audio 2.1 Calibration
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audio/render_audio_2_1_sample.py'
+      - '.github/workflows/audio-2-1-calibration.yml'
+      - 'book/AUDIO_DIRECTION_2_1.md'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render chapter 03 sample B
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: python scripts/audio/render_audio_2_1_sample.py
+      - name: Inspect calibration receipt
+        run: |
+          test -s dist/audio-2.1-calibration/zmierenie-03-reflexia-audio-2.1-B.mp3
+          test -s dist/audio-2.1-calibration/receipt.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('dist/audio-2.1-calibration/receipt.json').read_text(encoding='utf-8'))
+          assert r['status']=='CALIBRATION_SAMPLE_READY'
+          assert r['chapter']==3
+          assert r['profile']=='B'
+          assert r['textChanged'] is False
+          assert r['bytes'] > 10000
+          print(r)
+          PY
+      - name: Upload calibration sample
+        uses: actions/upload-artifact@v4
+        with:
+          name: zmierenie-audio-2.1-ch03-B
+          path: dist/audio-2.1-calibration/
+          if-no-files-found: error
+          retention-days: 30
