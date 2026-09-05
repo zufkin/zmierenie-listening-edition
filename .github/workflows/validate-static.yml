@@ -25,6 +25,7 @@ jobs:
           test -s book/chapter.js
           test -s book/book.js
           test -s book/book-ui.css
+          test -s book/drupal-iframe-snippet.html
       - name: Validate JavaScript
         shell: bash
         run: |
@@ -109,5 +110,9 @@ jobs:
           if './book.js' not in index or './book-ui.css' not in index: raise SystemExit('Index learning UI assets are missing')
           if short_note not in Path('book/chapter.js').read_text(encoding='utf-8'): raise SystemExit('Chapter JS is missing the short disclosure')
           if short_note not in Path('book/chapter.css').read_text(encoding='utf-8'): raise SystemExit('CSS fallback is missing the short disclosure')
-          print('Book QA OK: technical + pedagogical + theological/safety regression checks passed')
+          bridge=Path('book/drupal-iframe-snippet.html').read_text(encoding='utf-8')
+          expected_bridge='https://zufkin.github.io/zmierenie-listening-edition/book/?embed=1'
+          if expected_bridge not in bridge: raise SystemExit('Drupal bridge does not point to the canonical multi-page book')
+          if 'title="Zmierenie – webová učebnica"' not in bridge: raise SystemExit('Drupal bridge is missing its accessible title')
+          print('Book QA OK: technical + pedagogical + theological/safety + Drupal handoff checks passed')
           PY
