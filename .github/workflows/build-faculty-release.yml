@@ -1,0 +1,33 @@
+name: Build Faculty Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'book/**'
+      - 'deploy/faculty/**'
+      - '.github/workflows/build-faculty-release.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build faculty archive
+        run: python deploy/faculty/build_release.py
+      - name: Inspect release
+        run: |
+          test -s dist/zmierenie-faculty-release-2.0.tar.gz
+          test -s dist/zmierenie-faculty-release-2.0.tar.gz.sha256
+          tar -tzf dist/zmierenie-faculty-release-2.0.tar.gz | grep -q 'index.html'
+          tar -tzf dist/zmierenie-faculty-release-2.0.tar.gz | grep -q 'chapter-12.html'
+          tar -tzf dist/zmierenie-faculty-release-2.0.tar.gz | grep -q 'audio/zmierenie-12-reflexia.mp3'
+      - name: Upload faculty artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zmierenie-faculty-release-2.0
+          path: |
+            dist/zmierenie-faculty-release-2.0.tar.gz
+            dist/zmierenie-faculty-release-2.0.tar.gz.sha256
+          if-no-files-found: error
