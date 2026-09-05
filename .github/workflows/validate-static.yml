@@ -20,6 +20,9 @@ jobs:
           test -s manifest.json
           test -s app.webmanifest
           test -s sw.js
+          test -s book/index.html
+          test -s book/chapter.css
+          test -s book/chapter.js
       - name: Validate JSON
         shell: bash
         run: |
@@ -46,4 +49,36 @@ jobs:
           if missing:
               raise SystemExit('Missing local assets: '+repr(missing))
           print('Local asset references OK')
+          PY
+      - name: Validate full book and audio disclosures
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          chapters=sorted(Path('book').glob('chapter-[0-9][0-9].html'))
+          if len(chapters) != 12:
+              raise SystemExit(f'Expected 12 chapters, found {len(chapters)}')
+          for i,p in enumerate(chapters,1):
+              text=p.read_text(encoding='utf-8')
+              expected=f'./audio/zmierenie-{i:02d}-reflexia.mp3'
+              checks={
+                  'reflection audio': expected in text,
+                  'chapter stylesheet': 'href="./chapter.css"' in text,
+                  'chapter script': '<script src="./chapter.js"></script>' in text,
+                  'audio extension': 'audio-extension' in text,
+              }
+              failed=[name for name,ok in checks.items() if not ok]
+              if failed:
+                  raise SystemExit(f'{p}: missing {failed}')
+              if not Path('book/audio',f'zmierenie-{i:02d}-reflexia.mp3').is_file():
+                  raise SystemExit(f'{p}: missing audio file')
+          long_note='Experimentálna audio vrstva so synteticky generovaným hlasom pomocou AI.'
+          short_note='Experimentálna vrstva – syntetický hlas.'
+          if long_note not in Path('book/index.html').read_text(encoding='utf-8'):
+              raise SystemExit('Book index is missing the approved full AI audio disclosure')
+          if short_note not in Path('book/chapter.js').read_text(encoding='utf-8'):
+              raise SystemExit('Chapter JS is missing the short disclosure')
+          if short_note not in Path('book/chapter.css').read_text(encoding='utf-8'):
+              raise SystemExit('CSS fallback is missing the short disclosure')
+          print('Book QA OK: 12 chapters, 12 audio files, disclosure JS + CSS fallback')
           PY
