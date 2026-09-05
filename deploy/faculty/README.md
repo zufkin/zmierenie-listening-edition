@@ -3,6 +3,19 @@
 ## Cieľ
 Nasadiť viacstránkovú webovú učebnicu priamo na fakultnú infraštruktúru bez závislosti od GitHub Pages a bez ručnej editácie Drupal node 621, pokiaľ živá stránka stále používa pôvodný iframe pattern.
 
+## Overený deployment artefakt
+GitHub Actions workflow `Build Faculty Release` vytvára jeden reprodukovateľný balík z adresára `book/`.
+
+Aktuálne overený artefakt:
+- názov: `zmierenie-faculty-release-2.0`
+- workflow run: `33991252366`
+- artifact id: `9976690587`
+- veľkosť ZIP artefaktu: `39 730 279 B`
+- artifact digest: `sha256:f850c2875b3e134717311ad0eb7207fcb70ab97a67fd115d61b3f23cb383e583`
+- build/inspection/upload: PASS
+
+Vo vnútri artefaktu je `zmierenie-faculty-release-2.0.tar.gz` a jeho `.sha256`. Samotný tarball obsahuje webový release s `DEPLOYMENT.json` a `SHA256SUMS` pre jednotlivé súbory.
+
 ## Predpoklad existujúcej produkcie
 Pôvodný produkčný balík používal Drupal Full HTML iframe:
 `/sites/default/files/zmierenie/index.html`
