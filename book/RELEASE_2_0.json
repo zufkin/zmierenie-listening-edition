@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "edition": "2.0",
+  "releasedAt": "2026-09-05",
+  "architecture": "multi-page textbook",
+  "chapters": 12,
+  "stablePdf": "https://tf.truni.sk/sites/default/files/book/zmierenie-ucebnica.pdf",
+  "publicRuntime": "https://zufkin.github.io/zmierenie-listening-edition/book/",
+  "facultyPath": "https://tf.truni.sk/zmierenie-ucebnica",
+  "drupalBridge": "book/drupal-iframe-snippet.html",
+  "learningLayer": [
+    "chapter progress",
+    "local notes",
+    "full-book search",
+    "font scaling",
+    "high contrast",
+    "previous-next chapter navigation",
+    "video supplements",
+    "audio reflections"
+  ],
+  "audioDisclosure": {
+    "full": "Experimentálna audio vrstva so synteticky generovaným hlasom pomocou AI.",
+    "perAudio": "Experimentálna vrstva – syntetický hlas."
+  },
+  "qa": [
+    "technical",
+    "asset references",
+    "12 chapter structure",
+    "12 audio files",
+    "pedagogical regression",
+    "theological and safety guardrails",
+    "stable PDF preservation",
+    "Drupal handoff"
+  ],
+  "deploymentBoundary": "GitHub Pages deployment verified; authenticated Drupal write still required for direct faculty-page embed"
+}
