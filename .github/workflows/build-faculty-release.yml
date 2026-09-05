@@ -23,6 +23,23 @@ jobs:
           tar -tzf dist/zmierenie-faculty-release-2.0.tar.gz | grep -q 'index.html'
           tar -tzf dist/zmierenie-faculty-release-2.0.tar.gz | grep -q 'chapter-12.html'
           tar -tzf dist/zmierenie-faculty-release-2.0.tar.gz | grep -q 'audio/zmierenie-12-reflexia.mp3'
+      - name: HTTP smoke test at faculty path
+        shell: bash
+        run: |
+          mkdir -p _http/sites/default/files/zmierenie
+          tar -xzf dist/zmierenie-faculty-release-2.0.tar.gz -C _http/sites/default/files/zmierenie
+          python -m http.server 8765 --directory _http >/tmp/zmierenie-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            page=$(printf 'chapter-%02d.html' "$n")
+            curl -fsS "http://127.0.0.1:8765/sites/default/files/zmierenie/$page" >/dev/null
+          done
+          curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/index.html | grep -q 'Stabilné PDF + živá digitálna vrstva'
+          curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/chapter.css >/dev/null
+          curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/book.js >/dev/null
+          curl -fsS --range 0-63 http://127.0.0.1:8765/sites/default/files/zmierenie/audio/zmierenie-01-reflexia.mp3 >/dev/null
+          curl -fsS --range 0-63 http://127.0.0.1:8765/sites/default/files/zmierenie/audio/zmierenie-12-reflexia.mp3 >/dev/null
       - name: Upload faculty artifact
         uses: actions/upload-artifact@v4
         with:
