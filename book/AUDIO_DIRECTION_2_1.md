@@ -1,6 +1,6 @@
 # Zmierenie — Audio Direction 2.1
 
-**Status:** PERFORMANCE REVISION / CONTENT FROZEN / VOICE PROFILE LOCKED
+**Status:** PERFORMANCE REVISION / CONTENT FROZEN / VOICE PROFILE LOCKED / EXECUTION READY
 **Date:** 2026-09-05
 **Scope:** nanovo vyrenderovať 12 audioreflexií bez zmeny ich schváleného textu.
 
@@ -55,11 +55,27 @@ Preferovaný kandidát pred posluchovým testom: B. Kapitola 03 je kalibračná,
 ## Režijný brief — pre Studio / budúci model s direction prompting
 Read this in Jozef's ordinary speaking voice, as if he were talking to a small group of about eight people after a lecture. This is a personal podcast-style afterthought to a chapter, not acting, preaching, audiobook narration, guided meditation, or dramatic storytelling. Keep the vocal energy stable across the whole piece. Allow small natural changes of pace between analytical and personal passages, but do not build intensity toward the second half or the ending. Before a genuinely important sentence, a short natural pause is appropriate; then give the sentence only slightly more emphasis, without raising the voice into a punch line. On sensitive subjects, sound personal and empathetic without performing sadness, solemnity, or moral gravity. Avoid theatrical pitch rises, emotional swells, suspense, exaggerated pauses, or an Italian-style dramatic delivery. The final question should be quieter, personal, non-intrusive and slightly lighter in tone, like a real question offered to eight listeners rather than a meditative climax. Do not make Jozef sound more polished, charismatic, profound, warm, or dramatic than he naturally is. The governing rule is: do not make him better than he is; make him recognizably himself.
 
+## Historicky overená vykonávacia cesta
+Pôvodná ElevenLabs produkcia už existovala a používala rovnaký Professional Voice Clone `Jozef` (voice ID `htSeFhhpBaCgJzL05q6C`). Gmail potvrdenia z 24.–25. 8. 2026 dokazujú pripravenosť hlasu pre Eleven Multilingual v2.
+
+Lokálny runner pôvodnej produkčnej vetvy:
+`C:\Users\zufki\Claude\Projects\web tf.truni.sk\site\scripts\listening-edition\generate_audio.py`
+
+Lokálne prostredie / secret boundary:
+`C:\Users\zufki\Claude\Projects\web tf.truni.sk\site\scripts\listening-edition\`
+
+`.env` bol pri pôvodnej produkcii uložený mimo zdrojového kódu a gitignored. Secret sa nikdy nekopíruje do GitHubu, Drive, chatu ani receiptov. Audio 2.1 má znovu použiť tento existujúci runner a existujúci lokálny secret, nie nový účet ani nový TTS provider.
+
+Aktuálny technický stav 5. 9. 2026: Remote Desktop device odpovedá na ping, ale command/file transport vracia `Not connected`. Preto render ešte NIE JE vykonaný. Toto je transportný blocker, nie chýbajúce povolenie, text, voice clone alebo produkčný postup. Automatický retry je naviazaný priamo na tento runner.
+
+Cloudový fallback v GitHub Actions je pripravený, ale je `workflow_dispatch` only a správne sa nespúšťa bez `ELEVENLABS_API_KEY` secretu v GitHub Actions. Kľúč sa do GitHubu neprenáša automaticky.
+
 ## Produkčný postup
 1. Texty 12 reflexií nemeníme.
 2. Voice profil je uzamknutý týmto dokumentom.
-3. Kapitola 03 sa vyrenderuje v A/B/C variantoch s identickým textom.
-4. Jozef vyberie najprirodzenejší variant podľa počuteľnosti, nie podľa technického čísla.
-5. Zvolený profil sa aplikuje na 12 kapitol; kvôli nedeterministickému TTS sa každá nahrávka stále samostatne posluchovo skontroluje.
-6. Pred výmenou live MP3 sa urobí 12/12 QA: prirodzenosť, stabilita energie, tempo, dôrazy, pauzy, výslovnosť, absencia hereckosti, záverečná otázka a správne mapovanie kapitoly ↔ audio.
-7. Starý audio release zostáva rollbackom, kým nový 12/12 neprejde QA.
+3. Prvý reálny render: iba kapitola 03, profil B, ako samostatný kalibračný MP3; živý audio súbor sa neprepisuje.
+4. Po readbacku MP3 sa overí veľkosť, SHA-256, trvanie a dostupnosť na vypočutie.
+5. Jozef vyhodnotí prirodzenosť; až podľa výsledku sa prípadne použije A/C alebo jemná úprava B.
+6. Zvolený profil sa aplikuje na 12 kapitol; kvôli nedeterministickému TTS sa každá nahrávka stále samostatne posluchovo skontroluje.
+7. Pred výmenou live MP3 sa urobí 12/12 QA: prirodzenosť, stabilita energie, tempo, dôrazy, pauzy, výslovnosť, absencia hereckosti, záverečná otázka a správne mapovanie kapitoly ↔ audio.
+8. Starý audio release zostáva rollbackom, kým nový 12/12 neprejde QA.
