@@ -1,1 +1,6 @@
 const ch=document.body.dataset.chapter||'x';const key='zmierenie-ch'+String(ch).padStart(2,'0')+'-scroll';const saved=Number(localStorage.getItem(key)||0);if(saved>0&&saved<document.body.scrollHeight){requestAnimationFrame(()=>scrollTo({top:saved,behavior:'auto'}));}let timer;addEventListener('scroll',()=>{clearTimeout(timer);timer=setTimeout(()=>localStorage.setItem(key,String(scrollY)),250);},{passive:true});addEventListener('beforeunload',()=>localStorage.setItem(key,String(scrollY)));
+
+const audioDisclosureSk='<strong>Experimentálna audio vrstva.</strong> Táto nahrávka používa synteticky generovaný hlas vytvorený pomocou umelej inteligencie; nejde o autentický hlas autora.';
+const audioDisclosureEn='<strong>Experimental audio layer.</strong> This recording uses a synthetically generated voice created with artificial intelligence; it is not the author’s authentic voice.';
+const audioDisclosure=(document.documentElement.lang||'sk').toLowerCase().startsWith('en')?audioDisclosureEn:audioDisclosureSk;
+document.querySelectorAll('audio').forEach(audio=>{if(audio.previousElementSibling?.classList?.contains('audio-disclosure'))return;const note=document.createElement('p');note.className='audio-disclosure';note.innerHTML=audioDisclosure;audio.parentNode.insertBefore(note,audio);});
