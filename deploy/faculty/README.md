@@ -8,11 +8,14 @@ GitHub Actions workflow `Build Faculty Release` vytvára jeden reprodukovateľn�
 
 Aktuálne overený artefakt:
 - názov: `zmierenie-faculty-release-2.0`
-- workflow run: `33991252366`
-- artifact id: `9976690587`
-- veľkosť ZIP artefaktu: `39 730 279 B`
-- artifact digest: `sha256:f850c2875b3e134717311ad0eb7207fcb70ab97a67fd115d61b3f23cb383e583`
+- workflow run: `33991350715`
+- artifact id: `9976720470`
+- veľkosť ZIP artefaktu: `39 730 356 B`
+- artifact digest: `sha256:4eee43c57a16b4b537721e886099da86ea01fee5387a376075e248e6a16964da`
 - build/inspection/upload: PASS
+- simulovaný HTTP deploy pod `/sites/default/files/zmierenie/`: PASS
+
+HTTP smoke-test rozbalil release presne do budúcej fakultnej cesty a overil všetkých 12 kapitol, index, CSS, JS a range requesty na audio 01 a 12.
 
 Vo vnútri artefaktu je `zmierenie-faculty-release-2.0.tar.gz` a jeho `.sha256`. Samotný tarball obsahuje webový release s `DEPLOYMENT.json` a `SHA256SUMS` pre jednotlivé súbory.
 
