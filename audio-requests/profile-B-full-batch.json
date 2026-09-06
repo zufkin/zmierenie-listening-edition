@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "requestId": "audio-2.1-profile-B-full-2026-09-06",
+  "intent": "render_batch_preview",
+  "chapters": [1,2,3,4,5,6,7,8,9,10,11,12],
+  "profile": "B",
+  "productionAudioChanged": false
+}
