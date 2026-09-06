@@ -1,6 +1,6 @@
 # Zmierenie — Audio Direction 2.1
 
-**Status:** PERFORMANCE REVISION / CONTENT FROZEN / VOICE PROFILE LOCKED / EXECUTION READY
+**Status:** PERFORMANCE REVISION / CONTENT FROZEN / VOICE PROFILE LOCKED / CALIBRATION RENDERED / LISTENING DECISION PENDING
 **Date:** 2026-09-05
 **Scope:** nanovo vyrenderovať 12 audioreflexií bez zmeny ich schváleného textu.
 
@@ -56,17 +56,17 @@ Preferovaný kandidát pred posluchovým testom: B. Kapitola 03 je kalibračná,
 Read this in Jozef's ordinary speaking voice, as if he were talking to a small group of about eight people after a lecture. This is a personal podcast-style afterthought to a chapter, not acting, preaching, audiobook narration, guided meditation, or dramatic storytelling. Keep the vocal energy stable across the whole piece. Allow small natural changes of pace between analytical and personal passages, but do not build intensity toward the second half or the ending. Before a genuinely important sentence, a short natural pause is appropriate; then give the sentence only slightly more emphasis, without raising the voice into a punch line. On sensitive subjects, sound personal and empathetic without performing sadness, solemnity, or moral gravity. Avoid theatrical pitch rises, emotional swells, suspense, exaggerated pauses, or an Italian-style dramatic delivery. The final question should be quieter, personal, non-intrusive and slightly lighter in tone, like a real question offered to eight listeners rather than a meditative climax. Do not make Jozef sound more polished, charismatic, profound, warm, or dramatic than he naturally is. The governing rule is: do not make him better than he is; make him recognizably himself.
 
 ## Historicky overená vykonávacia cesta
-Pôvodná ElevenLabs produkcia už existovala a používala rovnaký Professional Voice Clone `Jozef` (voice ID `htSeFhhpBaCgJzL05q6C`). Gmail potvrdenia z 24.–25. 8. 2026 dokazujú pripravenosť hlasu pre Eleven Multilingual v2.
+Pôvodná ElevenLabs produkcia už existovala a používala Professional Voice Clone `Jozef`. Produkčný receipt z 1. 9. 2026 a aktuálny lokálny `.env` potvrdzujú voice ID `GgshSttSyBqEDNtKedLz`. Starší identifikátor `htSeFhhpBaCgJzL05q6C` je neaktuálny a 6. 9. 2026 vrátil ElevenLabs `voice_not_found`.
 
 Lokálny runner pôvodnej produkčnej vetvy:
-`C:\Users\zufki\Claude\Projects\web tf.truni.sk\site\scripts\listening-edition\generate_audio.py`
+`C:\Users\zufki\Claude\Projects\web tf.truni.sk\scripts\listening-edition\generate_audio.py`
 
 Lokálne prostredie / secret boundary:
-`C:\Users\zufki\Claude\Projects\web tf.truni.sk\site\scripts\listening-edition\`
+`C:\Users\zufki\Claude\Projects\web tf.truni.sk\scripts\listening-edition\`
 
 `.env` bol pri pôvodnej produkcii uložený mimo zdrojového kódu a gitignored. Secret sa nikdy nekopíruje do GitHubu, Drive, chatu ani receiptov. Audio 2.1 má znovu použiť tento existujúci runner a existujúci lokálny secret, nie nový účet ani nový TTS provider.
 
-Aktuálny technický stav 5. 9. 2026: Remote Desktop device odpovedá na ping, ale command/file transport vracia `Not connected`. Preto render ešte NIE JE vykonaný. Toto je transportný blocker, nie chýbajúce povolenie, text, voice clone alebo produkčný postup. Automatický retry je naviazaný priamo na tento runner.
+Aktuálny technický stav 6. 9. 2026: Remote Desktop command channel je znovu funkčný. Kalibračná kapitola 03 bola lokálne vyrenderovaná vo všetkých troch profiloch A/B/C bez zmeny textu a bez zásahu do produkčných MP3. Výsledky sú pripravené na posluchové rozhodnutie Jozefa; až potom sa smie zvolený profil aplikovať na 12 kapitol.
 
 Cloudový fallback v GitHub Actions je pripravený, ale je `workflow_dispatch` only a správne sa nespúšťa bez `ELEVENLABS_API_KEY` secretu v GitHub Actions. Kľúč sa do GitHubu neprenáša automaticky.
 

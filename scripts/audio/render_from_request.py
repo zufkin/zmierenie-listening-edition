@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 MASTER = ROOT / "book" / "audio-script-master-sk-2026-09-01.md"
 REQUEST = ROOT / "audio-requests" / "current.json"
 OUT_ROOT = ROOT / "dist" / "audio-mobile-first"
-VOICE_ID = "htSeFhhpBaCgJzL05q6C"
+VOICE_ID = "GgshSttSyBqEDNtKedLz"
 MODEL_ID = "eleven_multilingual_v2"
 OUTPUT_FORMAT = "mp3_44100_128"
 

@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $Repo = 'zufkin/zmierenie-listening-edition'
-$LegacyDir = 'C:\Users\zufki\Claude\Projects\web tf.truni.sk\site\scripts\listening-edition'
+$LegacyDir = 'C:\Users\zufki\Claude\Projects\web tf.truni.sk\scripts\listening-edition'
 $EnvFile = Join-Path $LegacyDir '.env'
 
 if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
