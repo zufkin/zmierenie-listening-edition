@@ -45,19 +45,38 @@ jobs:
         shell: bash
         run: |
           set +e
-          node_code=$(curl -L -sS -o /tmp/faculty-node.html -w '%{http_code}' 'https://tf.truni.sk/zmierenie-ucebnica?release_preflight=2')
-          static_code=$(curl -L -sS -o /tmp/faculty-static.html -w '%{http_code}' 'https://tf.truni.sk/sites/default/files/zmierenie/index.html?release_preflight=2')
-          printf 'LIVE_NODE_HTTP=%s\nLIVE_STATIC_HTTP=%s\n' "$node_code" "$static_code"
-          echo 'LIVE_IFRAME_SRCS_BEGIN'
-          grep -oE '<iframe[^>]+src=["'"'][^"'"']+["'"']' /tmp/faculty-node.html | sed -E 's/.*src=["'"']([^"'"']+).*/\1/' | sort -u | head -20
-          echo 'LIVE_IFRAME_SRCS_END'
-          echo 'LIVE_AUDIO_SRCS_BEGIN'
-          grep -oE '<audio[^>]+src=["'"'][^"'"']+["'"']' /tmp/faculty-node.html | sed -E 's/.*src=["'"']([^"'"']+).*/\1/' | sort -u | head -20
-          echo 'LIVE_AUDIO_SRCS_END'
-          printf 'MARKER_CHAPTER_1_OF_12='; grep -q 'Kapitola 1 z 12' /tmp/faculty-node.html && echo yes || echo no
-          printf 'MARKER_GITHUB_BOOK='; grep -q 'zufkin.github.io/zmierenie-listening-edition/book' /tmp/faculty-node.html && echo yes || echo no
-          printf 'MARKER_LOCAL_STATIC='; grep -q 'sites/default/files/zmierenie/index.html' /tmp/faculty-node.html && echo yes || echo no
-          printf 'MARKER_RELEASE2='; grep -q 'Stabilné PDF + živá digitálna vrstva' /tmp/faculty-node.html && echo yes || echo no
+          node_code=$(curl -L -sS -o /tmp/faculty-node.html -w '%{http_code}' 'https://tf.truni.sk/zmierenie-ucebnica?release_preflight=3')
+          static_code=$(curl -L -sS -o /tmp/faculty-static.html -w '%{http_code}' 'https://tf.truni.sk/sites/default/files/zmierenie/index.html?release_preflight=3')
+          export LIVE_NODE_HTTP="$node_code" LIVE_STATIC_HTTP="$static_code"
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import os
+
+          class P(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.iframes=[]; self.audios=[]
+              def handle_starttag(self, tag, attrs):
+                  d=dict(attrs)
+                  if tag == 'iframe' and d.get('src'): self.iframes.append(d['src'])
+                  if tag == 'audio' and d.get('src'): self.audios.append(d['src'])
+
+          text=Path('/tmp/faculty-node.html').read_text(encoding='utf-8',errors='replace')
+          p=P(); p.feed(text)
+          print('LIVE_NODE_HTTP='+os.environ.get('LIVE_NODE_HTTP',''))
+          print('LIVE_STATIC_HTTP='+os.environ.get('LIVE_STATIC_HTTP',''))
+          print('LIVE_IFRAME_SRCS='+repr(sorted(set(p.iframes))[:20]))
+          print('LIVE_AUDIO_SRCS_COUNT='+str(len(set(p.audios))))
+          print('LIVE_AUDIO_SRCS_SAMPLE='+repr(sorted(set(p.audios))[:20]))
+          markers={
+            'CHAPTER_1_OF_12':'Kapitola 1 z 12' in text,
+            'GITHUB_BOOK':'zufkin.github.io/zmierenie-listening-edition/book' in text,
+            'LOCAL_STATIC':'sites/default/files/zmierenie/index.html' in text,
+            'RELEASE2':'Stabilné PDF + živá digitálna vrstva' in text,
+            'OLD_ONEPAGE':'chapter-card' not in text and 'Kapitola 1 z 12' in text,
+          }
+          for k,v in markers.items(): print(f'MARKER_{k}={"yes" if v else "no"}')
+          PY
           exit 0
       - name: Upload faculty artifact
         uses: actions/upload-artifact@v4
