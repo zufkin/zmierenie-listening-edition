@@ -48,10 +48,10 @@ jobs:
             curl -fsS "http://127.0.0.1:8765/sites/default/files/zmierenie/$page" >/dev/null
           done
           curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/index.html | grep -q 'Stabilné PDF + živá digitálna vrstva'
+          curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/chapter-01.html | grep -q '/sites/default/files/book/audio/zmierenie-01-reflexia.mp3'
+          curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/chapter-12.html | grep -q '/sites/default/files/book/audio/zmierenie-12-reflexia.mp3'
           curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/chapter.css >/dev/null
           curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/book.js >/dev/null
-          curl -fsS --range 0-63 http://127.0.0.1:8765/sites/default/files/zmierenie/audio/zmierenie-01-reflexia.mp3 >/dev/null
-          curl -fsS --range 0-63 http://127.0.0.1:8765/sites/default/files/zmierenie/audio/zmierenie-12-reflexia.mp3 >/dev/null
       - name: Upload faculty artifact
         uses: actions/upload-artifact@v4
         with:
