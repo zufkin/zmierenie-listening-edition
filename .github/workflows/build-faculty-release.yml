@@ -52,6 +52,20 @@ jobs:
           curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/chapter-12.html | grep -q '/sites/default/files/book/audio/zmierenie-12-reflexia.mp3'
           curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/chapter.css >/dev/null
           curl -fsS http://127.0.0.1:8765/sites/default/files/zmierenie/book.js >/dev/null
+      - name: Read-only production preflight
+        shell: bash
+        run: |
+          set +e
+          node_code=$(curl -L -sS -o /tmp/faculty-node.html -w '%{http_code}' 'https://tf.truni.sk/zmierenie-ucebnica?release_preflight=1')
+          static_code=$(curl -L -sS -o /tmp/faculty-static.html -w '%{http_code}' 'https://tf.truni.sk/sites/default/files/zmierenie/index.html?release_preflight=1')
+          printf 'LIVE_NODE_HTTP=%s\n' "$node_code"
+          printf 'LIVE_STATIC_HTTP=%s\n' "$static_code"
+          if grep -q 'sites/default/files/zmierenie/index.html' /tmp/faculty-node.html; then echo 'LIVE_NODE_STATIC_BRIDGE=yes'; else echo 'LIVE_NODE_STATIC_BRIDGE=no'; fi
+          if grep -q 'chapter-01.html' /tmp/faculty-static.html && grep -q 'chapter-12.html' /tmp/faculty-static.html; then echo 'LIVE_STATIC_MULTIPAGE_12=yes'; else echo 'LIVE_STATIC_MULTIPAGE_12=no'; fi
+          if grep -q 'Stabilné PDF + živá digitálna vrstva' /tmp/faculty-static.html; then echo 'LIVE_STATIC_RELEASE2_MARKER=yes'; else echo 'LIVE_STATIC_RELEASE2_MARKER=no'; fi
+          printf 'LIVE_NODE_BYTES=%s\n' "$(wc -c </tmp/faculty-node.html 2>/dev/null || echo 0)"
+          printf 'LIVE_STATIC_BYTES=%s\n' "$(wc -c </tmp/faculty-static.html 2>/dev/null || echo 0)"
+          exit 0
       - name: Upload faculty artifact
         uses: actions/upload-artifact@v4
         with:
